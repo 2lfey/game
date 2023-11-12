@@ -7,6 +7,7 @@
   <title>Document</title>
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script> -->
   <!-- <script src="/static/test.js" defer></script> -->
+  <script src="/static/timer.js" defer></script>
   <script src="/static/game.js" defer></script>
   <script src="/static/canvas.js" defer></script>
   <script src="/static/ws.js" defer></script>
@@ -16,7 +17,16 @@
 <body class="h-screen flex flex-col items-center bg-gray-800">
 
   <div class="flex-1 min-h-screen flex flex-col justify-center">
-    <canvas id="canvas" class="w-full outline outline-white rounded"></canvas>
+    <div class="space-y-4 bg-neutral-400 p-4 border-8 border-neutral-300 border-r-neutral-500 border-b-neutral-500">
+      <header class="p-1.5 flex justify-between text-white border-8 border-neutral-300 border-l-neutral-500 border-t-neutral-500">
+        <span class="bg-black text-red-600 border-2 border-neutral-300 border-l-neutral-500 border-t-neutral-500" id="mineCount"></span>
+        <button class=" border-2 border-neutral-300 border-l-neutral-500 border-t-neutral-500" id="restartBtn">Restart</button>
+        <span class="bg-black text-red-600 border-2 border-neutral-300 border-l-neutral-500 border-t-neutral-500" id="timer"></span>
+      </header>
+      <main class="border-8 border-neutral-300 border-l-neutral-500 border-t-neutral-500">
+        <canvas id="canvas" class="w-full cursor-pointer"></canvas>
+      </main>
+    </div>
   </div>
 
 </body>
