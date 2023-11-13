@@ -7,8 +7,8 @@ let count = 0;
  */
 const createItem = () => {
   const item = {
-    isMine: Math.round(Math.random()) === 1,
-    // isMine: false,
+    // isMine: Math.round(Math.random()) === 1,
+    isMine: false,
     isFlagged: false,
     isRevealed: false,
     countAdjacentMines: 0,
@@ -156,6 +156,44 @@ const removeEventListener = (board, eventType, callback) => {
   events = events.splice(eventIndex, 1);
 };
 
+const shuffleItems = (board) => {
+  let currentIndex = board.items.length;
+  let randomIndex;
+
+  while (currentIndex > 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [board.items[currentIndex], board.items[randomIndex]] = [
+      board.items[randomIndex],
+      board.items[currentIndex],
+    ];
+  }
+};
+
+/**
+ * Fills the board with bombs.
+ *
+ * @param {Object} board - The board object.
+ */
+const fillBombs = (board) => {
+  for (let i = 0; i < board.mineCount; i++) {
+    const item = board.items[i];
+    item.isMine = true;
+  }
+};
+
+const clearBoard = (board) => {
+  board.items.forEach((item) => {
+    item.isMine = false;
+    item.isFlagged = false;
+    item.isRevealed = false;
+    item.countAdjacentMines = 0;
+  });
+  board.flagCount = 0;
+  board._isFirstReveal = true;
+}
+
 /**
  * Creates a game board with the specified number of columns and rows.
  *
@@ -246,7 +284,7 @@ const createBoard = (columns, rows) => {
 
     if (item.isFlagged) {
       console.log(`[flag] Unflagging cell ${index} [${column}, ${row}]`);
-      --board.flagCount
+      --board.flagCount;
       item.isFlagged = false;
       triggerEvent(board, "onUnflug", column, row, item);
       return;
@@ -258,6 +296,10 @@ const createBoard = (columns, rows) => {
     item.isFlagged = true;
     triggerEvent(board, "onFlug", column, row, item);
   };
+
+  fillBombs(board);
+
+  shuffleItems(board);
 
   calcAdjacentMines(board);
 

@@ -10,6 +10,7 @@
   <script src="/static/timer.js" defer></script>
   <script src="/static/game.js" defer></script>
   <script src="/static/canvas.js" defer></script>
+  <script src="/static/bind.js" defer></script>
   <script src="/static/ws.js" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -20,7 +21,9 @@
     <div class="space-y-4 bg-neutral-400 p-4 border-8 border-neutral-300 border-r-neutral-500 border-b-neutral-500">
       <header class="p-1.5 flex justify-between text-white border-8 border-neutral-300 border-l-neutral-500 border-t-neutral-500">
         <span class="bg-black text-red-600 border-2 border-neutral-300 border-l-neutral-500 border-t-neutral-500" id="mineCount"></span>
-        <button class=" border-2 border-neutral-300 border-l-neutral-500 border-t-neutral-500" id="restartBtn">Restart</button>
+        
+        <button class="border-2 border-neutral-500 border-l-neutral-300 border-t-neutral-300 active:border-neutral-500 active:border-r-neutral-300 active:border-b-neutral-300" id="restartBtn">Restart</button>
+
         <span class="bg-black text-red-600 border-2 border-neutral-300 border-l-neutral-500 border-t-neutral-500" id="timer"></span>
       </header>
       <main class="border-8 border-neutral-300 border-l-neutral-500 border-t-neutral-500">
