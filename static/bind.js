@@ -24,7 +24,7 @@ restartBtn.addEventListener("click", () => {
   
   setupCanvas();
 
-  mineCountBlock.innerText = board.mineCount - board.flagCount;
+  mineCountBlock.innerText = (board.mineCount - board.flagCount).toString().padStart(3, "0");
 });
 
 mineCountBlock.innerText = (board.mineCount - board.flagCount)

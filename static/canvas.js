@@ -163,26 +163,25 @@ const drawMine = (x, y) => {
   const centerX = x + settings.grid.size / 2;
   const centerY = y + settings.grid.size / 2;
 
-  ctx.lineWidth = 1;
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = settings.item.mine.color;
 
   for (let i = 1; i <= 8; ++i) {
-    const angle = circle / i + angleIncrement;
-    // let x1, x2, y1, y2;
-
-    deltaX = centerX;
-    deltaY = centerY;
-
-    ctx.moveTo(centerX, centerY);
+    const angle = i * angleIncrement;
 
     ctx.beginPath();
-    // ctx.arc(centerX, centerY, 5, angle, angle + angleIncrement);
+    ctx.moveTo(centerX, centerY);
+    ctx.arc(centerX, centerY, 5, angle, angle + angleIncrement);
 
     const cosa = Math.cos(angle);
     const sina = Math.sin(angle);
 
-    ctx.stroke();
+    ctx.lineTo(
+      centerX + 10 * cosa,
+      centerY + 10 * sina
+    );
 
-    console.log(`cos: ${cosa}, sin: ${sina}`);
+    ctx.stroke();
   }
 };
 
