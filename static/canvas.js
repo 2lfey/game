@@ -186,18 +186,12 @@ const drawMine = (x, y) => {
 };
 
 const setupCanvas = () => {
+  // Remove previous scatch
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // ctx.fillStyle = settings.item.hidden.color;
-  // ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   for (let i = 0; i < countHorizontalLines; ++i) {
     for (let j = 0; j < countVerticalLines; ++j) {
       drawHiddenItem(i * settings.grid.size, j * settings.grid.size);
     }
   }
-
-  // console.log(countHorizontalLines, countVerticalLines);
-
-  // drawHorizontalLines(countHorizontalLines);
-  // drawVerticalLines(countVerticalLines);
 };

@@ -11,20 +11,23 @@ const { board, reveal, flag } = createBoard(
 );
 
 restartBtn.addEventListener("click", () => {
+  timerBlock.innerHTML = "";
   timer.stop();
   timer = createTimer(timerBlock);
 
   clearBoard(board);
-  
+
   fillBombs(board);
-  
+
   shuffleItems(board);
-  
+
   calcAdjacentMines(board);
-  
+
   setupCanvas();
 
-  mineCountBlock.innerText = (board.mineCount - board.flagCount).toString().padStart(3, "0");
+  mineCountBlock.innerText = (board.mineCount - board.flagCount)
+    .toString()
+    .padStart(3, "0");
 });
 
 mineCountBlock.innerText = (board.mineCount - board.flagCount)

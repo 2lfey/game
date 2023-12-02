@@ -16,12 +16,17 @@ const createTimer = (element, callback) => {
     clearInterval(timerId);
   };
 
+  const timerContainer = createNumberContainer(0);
+
+  element.appendChild(timerContainer);
   const timer = () => {
     if (seconds >= 999) {
       stop();
       callback();
     }
-    element.innerText = seconds.toString().padStart(3, "0");
+
+    renderNumber(timerContainer, seconds);
+    // element.innerText = seconds.toString().padStart(3, "0");
     seconds += 1;
   };
 
@@ -33,7 +38,7 @@ const createTimer = (element, callback) => {
     timerId = setInterval(timer, 1000);
   };
 
-  element.innerText = "000";
+  // element.innerText = "000";
 
   return {
     start,
