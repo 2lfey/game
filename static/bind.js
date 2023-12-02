@@ -1,7 +1,11 @@
 const timerBlock = document.getElementById("timer");
 const mineCountBlock = document.getElementById("mineCount");
 const restartBtn = document.getElementById("restartBtn");
+const mineCount = createNumberContainer(0)
+
 let timer = createTimer(timerBlock);
+
+mineCountBlock.appendChild(mineCount);
 
 setupCanvas();
 
@@ -25,14 +29,18 @@ restartBtn.addEventListener("click", () => {
 
   setupCanvas();
 
-  mineCountBlock.innerText = (board.mineCount - board.flagCount)
-    .toString()
-    .padStart(3, "0");
+  renderNumber(mineCount, board.mineCount - board.flagCount)
+
+  // mineCountBlock.innerText = (board.mineCount - board.flagCount)
+  //   .toString()
+  //   .padStart(3, "0");
 });
 
-mineCountBlock.innerText = (board.mineCount - board.flagCount)
-  .toString()
-  .padStart(3, "0");
+renderNumber(mineCount, board.mineCount - board.flagCount)
+
+// mineCountBlock.innerText = (board.mineCount - board.flagCount)
+//   .toString()
+//   .padStart(3, "0");
 
 const onLeftClick = (column, row) => {
   // console.log(`Reveal on ${column}, ${row}`);
@@ -125,9 +133,11 @@ const onFlug = (column, row) => {
 
   drawFlag(column * settings.grid.size, row * settings.grid.size);
 
-  mineCountBlock.innerText = (board.mineCount - board.flagCount)
-    .toString()
-    .padStart(3, "0");
+  renderNumber(mineCount, board.mineCount - board.flagCount)
+
+  // mineCountBlock.innerText = (board.mineCount - board.flagCount)
+  //   .toString()
+  //   .padStart(3, "0");
 };
 
 const onUnflug = (column, row) => {
@@ -135,9 +145,11 @@ const onUnflug = (column, row) => {
 
   drawHiddenItem(column * settings.grid.size, row * settings.grid.size);
 
-  mineCountBlock.innerText = (board.mineCount - board.flagCount)
-    .toString()
-    .padStart(3, "0");
+  renderNumber(mineCount, board.mineCount - board.flagCount)
+
+  // mineCountBlock.innerText = (board.mineCount - board.flagCount)
+  //   .toString()
+  //   .padStart(3, "0");
 };
 
 const events = [
